@@ -1,0 +1,23 @@
+{
+  "name": "contest-yandex-answers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smalvik/contest-yandex-answers.git"
+  },
+  "keywords": [],
+  "author": "smalvik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smalvik/contest-yandex-answers/issues"
+  },
+  "homepage": "https://github.com/smalvik/contest-yandex-answers#readme",
+  "dependencies": {
+    "jest": "^29.3.1"
+  }
+}
