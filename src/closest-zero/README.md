@@ -72,7 +72,7 @@ Do the same thing but going from right to left. This will find closest zero to t
 // Print the distance with zeroes of every element
 function print_distance(arr, n) {
   // initializes an array of size n with 0
-  var ans = Array(n).fill(0);
+  let ans = Array(n).fill(0);
 
   // if first element is 0 then the distance
   // will be 0
@@ -120,15 +120,15 @@ function print_distance(arr, n) {
 }
 
 // Driver code
-var a = [2, 1, 0, 3, 0, 0, 3, 2, 4];
-var n = a.length;
+const a = [2, 1, 0, 3, 0, 0, 3, 2, 4];
+const n = a.length;
 print_distance(a, n);
 ```
 
 Output
 
 ```
-0 1 0 1 0 0 1 2 3
+2 1 0 1 0 0 1 2 3
 ```
 
 Time complexity: O(n)
