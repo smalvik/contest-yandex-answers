@@ -133,3 +133,45 @@ Output
 
 Time complexity: O(n)
 Auxiliary Space: O(n)
+
+```javascript
+const _readline = require("readline");
+
+const _reader = _readline.createInterface({
+  input: process.stdin,
+});
+
+const _inputLines = [];
+let _curLine = 0;
+
+_reader.on("line", (line) => {
+  _inputLines.push(line);
+});
+
+process.stdin.on("end", solve);
+
+function searchDistanceOfClosestZero(streetLength, arrStreetMap) {
+  let result = Array(streetLength).fill(0);
+  if (arrStreetMap[0] !== 0) result[0] = 1000000001;
+  for (let i = 1; i < streetLength; i++) {
+    result[i] = result[i - 1] + 1;
+    if (arrStreetMap[i] == 0) result[i] = 0;
+  }
+  if (arrStreetMap[streetLength - 1] == 0) result[streetLength - 1] = 0;
+  for (let i = streetLength - 2; i >= 0; i--) {
+    result[i] = Math.min(result[i], result[i + 1] + 1);
+    if (arrStreetMap[i] == 0) result[i] = 0;
+  }
+  return result;
+}
+
+function solve() {
+  const streetLength = Number(_inputLines[0]);
+  const arrStreetMap = _inputLines[1]
+    .trim(" ")
+    .split(" ")
+    .map((num) => Number(num));
+  const answer = searchDistanceOfClosestZero(streetLength, arrStreetMap);
+  process.stdout.write(`${answer.join(" ")}`);
+}
+```
