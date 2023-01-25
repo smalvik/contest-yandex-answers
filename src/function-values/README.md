@@ -24,7 +24,7 @@
 | --------- | ----- |
 | 8 2 9 -10 | 40    |
 
-## Решение 2
+## Решение 1
 
 ```javascript
 const _readline = require("readline");
