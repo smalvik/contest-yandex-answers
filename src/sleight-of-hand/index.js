@@ -47,17 +47,20 @@ let simulator = [
 
 const checkOccurrence = (simulator, target) => {
   let counter = 0;
+
   for (let simulatorItem of simulator.flat()) {
     if (simulatorItem == target) counter++;
   }
+
   return counter;
 };
 
 const searchMaxPoints = (generalClicking, simulator) => {
   let maxPoints = 0;
   const numbers = [];
+  const TIMER = 9;
 
-  for (let i = 1; i <= 9; i++) {
+  for (let i = 1; i <= TIMER; i++) {
     let result = checkOccurrence(simulator, i);
     console.log(`result - ${result}`);
     if (result !== 0) numbers.push(result);
