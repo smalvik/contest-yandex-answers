@@ -30,31 +30,45 @@ class Person {
   getName() {
     return this.name;
   }
+
+  isGreaterRoot(root) {
+    return (
+      this.solved > root.solved ||
+      (this.solved === root.solved && this.penalty > root.penalty) ||
+      (this.solved === root.solved &&
+        this.penalty === root.penalty &&
+        this.name > root.name)
+    );
+  }
 }
 
-rl.on("line", (line) => {
-  input.push(line);
-  if (input.length === parseInt(input[0], 10) + 1) {
-    for (let i = 1; i < input.length; i++) {
-      [username, solved, penalty] = input[i].split(" ");
-      participants.push(
-        new Person(username, -parseInt(solved, 10), parseInt(penalty, 10))
-      );
-    }
-    let result = heapSort(participants);
-    for (let participant of result) {
-      console.log(participant.getName());
-    }
-    rl.close();
-  }
-});
+// rl.on("line", (line) => {
+//   input.push(line);
+// if (input.length === parseInt(input[0], 10) + 1) {
+
+for (let i = 1; i < input.length; i++) {
+  [username, solved, penalty] = input[i].split(" ");
+  participants.push(
+    new Person(username, -parseInt(solved, 10), parseInt(penalty, 10))
+  );
+}
+
+let result = heapSort(participants);
+for (let participant of result) {
+  console.log(participant.getName());
+}
+
+// rl.close();
+// }
+// });
 
 // Пирамидальная сортировка
 /**
- * @param {object} arr
+ * @param {object} arr - массив участников
  * */
 function heapSort(arr) {
   let n = arr.length;
+
   for (let i = Math.floor(n / 2); i >= 0; i--) {
     heapify(arr, n, i);
   }
@@ -63,8 +77,10 @@ function heapSort(arr) {
     swap(arr, 0, j);
     heapify(arr, j, 0);
   }
+
   return arr;
 }
+
 //  Метод перемещает корень в конец
 /**
  * @param {object} arr
@@ -76,6 +92,7 @@ function swap(arr, i, j) {
   arr[i] = arr[j];
   arr[j] = tmp;
 }
+
 // Метод для преобразования в двоичную кучу поддерева с корневым узлом i,
 /**
  * @param {object} arr
@@ -87,11 +104,13 @@ function heapify(arr, n, i) {
   let right = 2 * i + 2;
   let max = i;
   // Если левый дочерний элемент больше корня
-  if (left < n && isGreaterRoot(arr[left], arr[max])) {
+  // if (left < n && isGreaterRoot(arr[left], arr[max])) {
+  if (left < n && arr[left].isGreaterRoot(arr[max])) {
     max = left;
   }
   // Если правый дочерний элемент больше корня
-  if (right < n && isGreaterRoot(arr[right], arr[max])) {
+  // if (right < n && isGreaterRoot(arr[right], arr[max])) {
+  if (right < n && arr[right].isGreaterRoot(arr[max])) {
     max = right;
   }
   // Если самый большой элемент не корень
@@ -101,17 +120,17 @@ function heapify(arr, n, i) {
   }
 }
 
-// Метод сравнения потомка с корнем
-/**
- * @param {object} child
- * @param {object} root
- * */
-function isGreaterRoot(child, root) {
-  return (
-    child.solved > root.solved ||
-    (child.solved === root.solved && child.penalty > root.penalty) ||
-    (child.solved === root.solved &&
-      child.penalty === root.penalty &&
-      child.name > root.name)
-  );
-}
+// // Метод сравнения потомка с корнем
+// /**
+//  * @param {object} child - потомок
+//  * @param {object} root - корень
+//  * */
+// function isGreaterRoot(child, root) {
+//   return (
+//     child.solved > root.solved ||
+//     (child.solved === root.solved && child.penalty > root.penalty) ||
+//     (child.solved === root.solved &&
+//       child.penalty === root.penalty &&
+//       child.name > root.name)
+//   );
+// }
